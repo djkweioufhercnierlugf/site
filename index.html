@@ -1088,12 +1088,133 @@
             left: 10%;
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 152, 255, 0.05));
         }
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    box-shadow: 
+        inset 0 0 10px rgba(255, 71, 87, 0.3),
+        0 0 15px rgba(255, 71, 87, 0.2);
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ff3838 0%, #ff2d2d 100%);
+    box-shadow: 
+        inset 0 0 15px rgba(255, 71, 87, 0.4),
+        0 0 20px rgba(255, 71, 87, 0.3);
+    transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #ff2d2d 0%, #ff1f1f 100%);
+    box-shadow: 
+        inset 0 0 20px rgba(255, 71, 87, 0.5),
+        0 0 25px rgba(255, 71, 87, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ff4757 #2d2d2d;
+}
+
+/* Enhanced scrollbar for specific containers */
+.container::-webkit-scrollbar-thumb,
+.hero::-webkit-scrollbar-thumb,
+.services::-webkit-scrollbar-thumb,
+.reviews::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Animated scrollbar glow effect */
+@keyframes scrollbar-glow {
+    0%, 100% {
+        box-shadow: 
+            inset 0 0 10px rgba(255, 71, 87, 0.3),
+            0 0 15px rgba(255, 71, 87, 0.2);
+    }
+    50% {
+        box-shadow: 
+            inset 0 0 15px rgba(255, 71, 87, 0.4),
+            0 0 25px rgba(255, 71, 87, 0.3);
+    }
+}
+
+/* Apply glow animation when scrolling */
+body.scrolling ::-webkit-scrollbar-thumb {
+    animation: scrollbar-glow 2s ease-in-out infinite;
+}
+
+/* Mobile scrollbar indicators */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        border: 1px solid transparent;
+    }
+}
+
+/* Thin scrollbar for specific sections */
+.carousel-wrapper::-webkit-scrollbar,
+.product-embed::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-thumb,
+.product-embed::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+    border-radius: 6px;
+    border: none;
+}
+
+/* Smooth scrolling behavior */
+html {
+    scroll-behavior: smooth;
+}
+
     </style>
 </head>
 <body>
     <div class="bg-decoration"></div>
     <div class="bg-decoration"></div>
     
+<script>
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    document.body.classList.add('scrolling');
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('scrolling');
+    }, 1000);
+});
+</script>
+
     <header>
         <div class="container">
             <nav>
