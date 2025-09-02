@@ -5,7 +5,6 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adverse Rust Script – The Safest And Most Advanced Option In The Whole Market.">
     <link rel="shortcut icon" type="image/x-icon" href="Logo.ico">
     <title>Adverse Rust Software</title>
     <style>
@@ -681,15 +680,15 @@
 
         /* Background decorative elements */
         .bg-decoration {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 56, 56, 0.05));
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-        }
-
+    position: fixed; /* <-- keep it pinned, not extending page height */
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 56, 56, 0.05));
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none; /* makes sure they don’t block clicks */
+}
         .bg-decoration:nth-child(1) {
             top: 10%;
             right: 10%;
@@ -699,27 +698,6 @@
             bottom: 20%;
             left: 10%;
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 152, 255, 0.05));
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding: 60px 0;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         /* Reviews Section */
@@ -962,17 +940,6 @@
         }
 
         /* Animation for review cards */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .reviews-header {
             animation: slideInUp 0.8s ease-out;
         }
@@ -1068,49 +1035,28 @@
             }
         }
 
-        /* Background decorative elements */
-        .bg-decoration {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 56, 56, 0.05));
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
         }
 
-        .bg-decoration:nth-child(1) {
-            top: 10%;
-            right: 10%;
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .bg-decoration:nth-child(2) {
-            bottom: 20%;
-            left: 10%;
-            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 152, 255, 0.05));
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+            box-shadow: 
+                inset 0 0 10px rgba(255, 71, 87, 0.3),
+                0 0 15px rgba(255, 71, 87, 0.2);
+            transition: all 0.3s ease;
         }
-
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: content-box;
-    box-shadow: 
-        inset 0 0 10px rgba(255, 71, 87, 0.3),
-        0 0 15px rgba(255, 71, 87, 0.2);
-    transition: all 0.3s ease;
-}
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #ff3838 0%, #ff2d2d 100%);
@@ -1207,6 +1153,7 @@ html {
     
 <script>
 let scrollTimeout;
+
 window.addEventListener('scroll', () => {
     document.body.classList.add('scrolling');
     clearTimeout(scrollTimeout);
@@ -1317,7 +1264,7 @@ window.addEventListener('scroll', () => {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>Hidden from all script checking tools and task manager.</span>
+                                <span>35+ features to further enhance your experience.</span>
                             </div>
                             <div class="feature-item">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1335,8 +1282,8 @@ window.addEventListener('scroll', () => {
                     
                     <div class="product-embed">
                         <div class="product-header">
-                            <h3 class="product-title">Rust Script | Lifetime</h3>
-                            <div class="product-price">$70</div>
+                            <h3 class="product-title">Rust Script | 1 Year</h3>
+                            <div class="product-price">$65</div>
                         </div>
                         <div class="product-features">
                             <div class="feature-item">
@@ -1349,7 +1296,7 @@ window.addEventListener('scroll', () => {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>Hidden from all script checking tools and task manager.</span>
+                                <span>35+ features to further enhance your experience.</span>
                             </div>
                             <div class="feature-item">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1361,7 +1308,7 @@ window.addEventListener('scroll', () => {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>Access to the software for the lifetime of the product.</span>
+                                <span>Access to the software for 1 year.</span>
                             </div>
                         </div>
                         <div class="embed-container">
@@ -1387,7 +1334,7 @@ window.addEventListener('scroll', () => {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>Hidden from all script checking tools and task manager.</span>
+                                <span>35+ features to further enhance your experience.</span>
                             </div>
                             <div class="feature-item">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
