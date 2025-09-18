@@ -184,96 +184,6 @@
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-
-            .image-container {
-                transform: none;
-                max-width: 100%;
-            }
-
-            .services-header h2 {
-                font-size: 2.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .services {
-                padding: 80px 0;
-            }
-
-            .services-header {
-                margin-bottom: 60px;
-            }
-
-            .services-header h2 {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .service-card {
-                padding: 32px 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-
-            .image-container {
-                padding: 16px;
-            }
-
-            .services-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .services-description {
-                font-size: 1.1rem;
-            }
-
-            .service-card {
-                padding: 28px 20px;
-            }
-
-            .service-icon {
-                width: 56px;
-                height: 56px;
-            }
-        }
-
         /* Services Section */
         .services {
             padding: 120px 0;
@@ -418,7 +328,7 @@
 
         .products-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -447,21 +357,100 @@
             line-height: 1.6;
         }
 
+        /* Product Category Selector */
+        .product-selector {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 8px;
+        }
+
+        .category-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 20px;
+            color: #b3b3b3;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .category-tab:hover {
+            background: rgba(255, 71, 87, 0.1);
+            border-color: rgba(255, 71, 87, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .category-tab:hover::before {
+            opacity: 1;
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, #ff4757, #ff3838);
+            border-color: #ff4757;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active::before {
+            opacity: 0;
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-top: 60px;
+            margin-top: 40px;
             align-items: start;
+            opacity: 1;
+            transition: all 0.4s ease;
         }
 
-        .product-embed:nth-child(2) {
+        .products-grid.changing {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .product-embed.featured {
             position: relative;
             z-index: 2;
             border: 2px solid rgba(255, 71, 87, 0.2);
         }
 
-        .product-embed:nth-child(2)::before {
+        .product-embed.featured::before {
             opacity: 0.3;
         }
 
@@ -600,95 +589,18 @@
             animation-delay: 0.2s;
         }
 
-        /* Responsive adjustments for products */
-        @media (max-width: 1024px) {
-            .products-header h2 {
-                font-size: 2.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-
-            .product-embed:nth-child(2) {
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .shopify-products {
-                padding: 80px 0;
-            }
-
-            .products-header {
-                margin-bottom: 60px;
-            }
-
-            .products-header h2 {
-                font-size: 2rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .product-embed {
-                padding: 24px 20px 20px 20px;
-            }
-
-            .product-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-                margin-bottom: 16px;
-            }
-
-            .product-title {
-                font-size: 1.3rem;
-            }
-
-            .product-price {
-                font-size: 1.4rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .products-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .products-description {
-                font-size: 1.1rem;
-            }
-
-            .product-embed {
-                padding: 16px;
-            }
-
-            .embed-container iframe {
-                height: 350px;
-            }
-
-            .purchase-btn {
-                padding: 14px 24px;
-                font-size: 1rem;
-                min-width: 180px;
-            }
-        }
-
         /* Background decorative elements */
         .bg-decoration {
-    position: fixed; /* <-- keep it pinned, not extending page height */
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 56, 56, 0.05));
-    border-radius: 50%;
-    filter: blur(100px);
-    z-index: -1;
-    pointer-events: none; /* makes sure they don’t block clicks */
-}
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 56, 56, 0.05));
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
         .bg-decoration:nth-child(1) {
             top: 10%;
             right: 10%;
@@ -948,30 +860,176 @@
             animation: slideInUp 0.8s ease-out 0.2s both;
         }
 
+        /* Footer Section */
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 60px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            flex: 1;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .footer-tagline {
+            color: #b3b3b3;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #b3b3b3;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 71, 87, 0.1);
+            border-color: rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright a {
+            color: #ff4757;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-copyright a:hover {
+            color: #ff3838;
+        }
+
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            .reviews-header h2 {
+        @media (max-width: 768px) {
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
 
-            .carousel-nav.prev {
-                left: -60px;
+            .hero-text p {
+                font-size: 1.1rem;
             }
 
-            .carousel-nav.next {
-                right: -60px;
+            nav {
+                flex-direction: column;
+                gap: 20px;
             }
 
-            .review-card {
-                padding: 40px 32px;
+            .services {
+                padding: 80px 0;
             }
 
-            .review-text {
-                font-size: 1.2rem;
+            .services-header {
+                margin-bottom: 60px;
             }
-        }
 
-        @media (max-width: 768px) {
+            .services-header h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .service-card {
+                padding: 32px 24px;
+            }
+
+            .shopify-products {
+                padding: 80px 0;
+            }
+
+            .products-header {
+                margin-bottom: 60px;
+            }
+
+            .products-header h2 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px;
+            }
+
+            .category-tab {
+                padding: 14px 20px;
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .product-embed {
+                padding: 24px 20px 20px 20px;
+            }
+
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .product-title {
+                font-size: 1.3rem;
+            }
+
+            .product-price {
+                font-size: 1.4rem;
+            }
+
             .reviews {
                 padding: 80px 0;
             }
@@ -1010,6 +1068,49 @@
         }
 
         @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .image-container {
+                padding: 16px;
+            }
+
+            .services-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .services-description {
+                font-size: 1.1rem;
+            }
+
+            .service-card {
+                padding: 28px 20px;
+            }
+
+            .service-icon {
+                width: 56px;
+                height: 56px;
+            }
+
+            .products-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .products-description {
+                font-size: 1.1rem;
+            }
+
+            .product-embed {
+                padding: 16px;
+            }
+
+            .purchase-btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+                min-width: 180px;
+            }
+
             .reviews-header h2 {
                 font-size: 1.8rem;
             }
@@ -1058,110 +1159,52 @@
             transition: all 0.3s ease;
         }
 
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #ff3838 0%, #ff2d2d 100%);
-    box-shadow: 
-        inset 0 0 15px rgba(255, 71, 87, 0.4),
-        0 0 20px rgba(255, 71, 87, 0.3);
-    transform: scale(1.05);
-}
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff3838 0%, #ff2d2d 100%);
+            box-shadow: 
+                inset 0 0 15px rgba(255, 71, 87, 0.4),
+                0 0 20px rgba(255, 71, 87, 0.3);
+            transform: scale(1.05);
+        }
 
-::-webkit-scrollbar-thumb:active {
-    background: linear-gradient(135deg, #ff2d2d 0%, #ff1f1f 100%);
-    box-shadow: 
-        inset 0 0 20px rgba(255, 71, 87, 0.5),
-        0 0 25px rgba(255, 71, 87, 0.4);
-}
+        ::-webkit-scrollbar-thumb:active {
+            background: linear-gradient(135deg, #ff2d2d 0%, #ff1f1f 100%);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 71, 87, 0.5),
+                0 0 25px rgba(255, 71, 87, 0.4);
+        }
 
-::-webkit-scrollbar-corner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-}
+        ::-webkit-scrollbar-corner {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
 
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #ff4757 #2d2d2d;
-}
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #ff4757 #2d2d2d;
+        }
 
-/* Enhanced scrollbar for specific containers */
-.container::-webkit-scrollbar-thumb,
-.hero::-webkit-scrollbar-thumb,
-.services::-webkit-scrollbar-thumb,
-.reviews::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-/* Animated scrollbar glow effect */
-@keyframes scrollbar-glow {
-    0%, 100% {
-        box-shadow: 
-            inset 0 0 10px rgba(255, 71, 87, 0.3),
-            0 0 15px rgba(255, 71, 87, 0.2);
-    }
-    50% {
-        box-shadow: 
-            inset 0 0 15px rgba(255, 71, 87, 0.4),
-            0 0 25px rgba(255, 71, 87, 0.3);
-    }
-}
-
-/* Apply glow animation when scrolling */
-body.scrolling ::-webkit-scrollbar-thumb {
-    animation: scrollbar-glow 2s ease-in-out infinite;
-}
-
-/* Mobile scrollbar indicators */
-@media (max-width: 768px) {
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        border: 1px solid transparent;
-    }
-}
-
-/* Thin scrollbar for specific sections */
-.carousel-wrapper::-webkit-scrollbar,
-.product-embed::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-.carousel-wrapper::-webkit-scrollbar-thumb,
-.product-embed::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
-    border-radius: 6px;
-    border: none;
-}
-
-/* Smooth scrolling behavior */
-html {
-    scroll-behavior: smooth;
-}
-
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
     <div class="bg-decoration"></div>
     <div class="bg-decoration"></div>
     
-<script>
-let scrollTimeout;
+    <script>
+        let scrollTimeout;
 
-window.addEventListener('scroll', () => {
-    document.body.classList.add('scrolling');
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        document.body.classList.remove('scrolling');
-    }, 1000);
-});
-</script>
+        window.addEventListener('scroll', () => {
+            document.body.classList.add('scrolling');
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                document.body.classList.remove('scrolling');
+            }, 1000);
+        });
+    </script>
 
     <header>
         <div class="container">
@@ -1197,7 +1240,7 @@ window.addEventListener('scroll', () => {
                     <p class="services-description">Enhance your gaming experience right now with Adverse.</p>
                 </div>
                 
-                 <div class="services-grid">
+                <div class="services-grid">
                     <div class="service-card">
                         <div class="service-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1244,281 +1287,450 @@ window.addEventListener('scroll', () => {
                 <div class="products-header">
                     <p class="products-tagline">Premium Gaming Gear</p>
                     <h2>Featured Products</h2>
-                    <p class="products-description">Discover our top-rated gaming enhancement products designed to give you the competitive edge you need.</p>
+                    <p class="products-description">Discover our gaming enhancement products designed to give you the competitive edge you need.</p>
                 </div>
                 
-                <div class="products-grid">
-                    <div class="product-embed">
-                        <div class="product-header">
-                            <h3 class="product-title">Rust Script | 1 Month</h3>
-                            <div class="product-price">$18</div>
-                        </div>
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Support for all weapons & attatchments.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>35+ features to further enhance your experience.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Access to the software for 1 month.</span>
-                            </div>
-                        </div>
-                         <div class="embed-container">
-                            <a onclick="storrik.pay('STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA', 'PROD_Axpsjtd2ss2pa4PQwsLI6nfxzPnQaY3R')" class="purchase-btn">
-                                Purchase Today
-                            </a>
-                        </div>
+                <div class="product-selector">
+                    <div class="category-tabs">
+                        <div class="category-tab active" data-category="rust">Rust</div>
+                        <div class="category-tab" data-category="fortnite">Rainbow X</div>
                     </div>
-                    
-                    <div class="product-embed">
-                        <div class="product-header">
-                            <h3 class="product-title">Rust Script | 1 Year</h3>
-                            <div class="product-price">$65</div>
-                        </div>
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Support for all weapons & attatchments.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>35+ features to further enhance your experience.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Exclusive roles and support.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Access to the software for 1 year.</span>
-                            </div>
-                        </div>
-                        <div class="embed-container">
-                            <a onclick="storrik.pay('STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA', 'PROD_v9irJUmMobaUcMeIRv4gbfNjaszwxFK4')" class="purchase-btn">
-                                Purchase Today
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="product-embed">
-                        <div class="product-header">
-                            <h3 class="product-title">Rust Script | 3 Months</h3>
-                            <div class="product-price">$30</div>
-                        </div>
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Support for all weapons & attatchments.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>35+ features to further enhance your experience.</span>
-                            </div>
-                            <div class="feature-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Access to the software for 3 months.</span>
-                            </div>
-                        </div>
-                        <div class="embed-container">
-                            <a onclick="storrik.pay('STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA', 'PROD_QfzHmcyPnsV874rfW8jCY0n0ZLjbLLkh')" class="purchase-btn">
-                                Purchase Today
-                            </a>
-                        </div>
-                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be populated by JavaScript -->
                 </div>
             </div>
         </section>
 
-<div class="bg-decoration"></div>
-    <div class="bg-decoration"></div>
-    
-    <section class="reviews">
-        <div class="container">
-            <div class="reviews-header">
-                <p class="reviews-tagline">Customer Testimonials</p>
-                <h2>What Our Users Say</h2>
-                <p class="reviews-description">Discover why thousands of gamers trust Adverse for their competitive edge.</p>
-            </div>
-            
-            <div class="carousel-container">
-                <div class="carousel-wrapper">
-                    <div class="carousel-track" id="carouselTrack">
-                        <!-- Review 1 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                This script completely transformed my Rust gameplay! The recoil control is insane and the features are exactly what I needed. Worth every penny and the support team is incredibly responsive.
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">t</div>
-                                <div class="reviewer-details">
-                                    <h4>tommy</h4>
-                                    <p>Lifetime User</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review 2 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                I've tried multiple scripts before but Adverse is on another level. The safety features give me peace of mind. Highly recommend to anyone serious about Rust.
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">S</div>
-                                <div class="reviewer-details">
-                                    <h4>sleeper</h4>
-                                    <p>Content Creator</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review 3 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                Best investment I've made for gaming! The script works flawlessly with all weapons and the additional features are game-changing. Customer support helped me set everything up perfectly.
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">R</div>
-                                <div class="reviewer-details">
-                                    <h4>Redacted</h4>
-                                    <p>Lifetime User</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review 4 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                Outstanding quality and reliability! I've been using Adverse for months without any issues. The frequent updates and new features show they really care about their users.
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">S</div>
-                                <div class="reviewer-details">
-                                    <h4>stuzzy</h4>
-                                    <p>Lifetime User</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review 5 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                Absolutely love this script! Easy to use, incredibly effective, and the community support is amazing. My aim has improved dramatically and I'm finally competitive in PvP situations.
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">A</div>
-                                <div class="reviewer-details">
-                                    <h4>Airoku</h4>
-                                    <p>Lifetime User</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review 6 -->
-                        <div class="review-card">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <p class="review-text">
-                                Top-tier script with unmatched performance! The developer clearly know what they're doing. Regular updates, great features, and excellent value for money. Can't imagine playing without it!
-                            </p>
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">R</div>
-                                <div class="reviewer-details">
-                                    <h4>Rhyse</h4>
-                                    <p>Lifetime User</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar" id="progressBar"></div>
+        <div class="bg-decoration"></div>
+        <div class="bg-decoration"></div>
+        
+        <section class="reviews">
+            <div class="container">
+                <div class="reviews-header">
+                    <p class="reviews-tagline">Customer Testimonials</p>
+                    <h2>What Our Users Say</h2>
+                    <p class="reviews-description">Discover why thousands of gamers trust Adverse for their competitive edge.</p>
                 </div>
+                
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Review 1 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    This script completely transformed my Rust gameplay! The recoil control is insane and the features are exactly what I needed. Worth every penny and the support team is incredibly responsive.
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">t</div>
+                                    <div class="reviewer-details">
+                                        <h4>tommy</h4>
+                                        <p>Lifetime User</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                <!-- Navigation Arrows -->
-                <button class="carousel-nav prev" id="prevBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <button class="carousel-nav next" id="nextBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
+                            <!-- Review 2 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    I've tried multiple scripts before but Adverse is on another level. The safety features give me peace of mind. Highly recommend to anyone serious about Rust.
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">S</div>
+                                    <div class="reviewer-details">
+                                        <h4>sleeper</h4>
+                                        <p>Content Creator</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                <!-- Dots Indicator -->
-                <div class="carousel-dots" id="carouselDots"></div>
+                            <!-- Review 3 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    Best investment I've made for gaming! The script works flawlessly with all weapons and the additional features are game-changing. Customer support helped me set everything up perfectly.
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">R</div>
+                                    <div class="reviewer-details">
+                                        <h4>Redacted</h4>
+                                        <p>Lifetime User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 4 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    Outstanding quality and reliability! I've been using Adverse for months without any issues. The frequent updates and new features show they really care about their users.
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">S</div>
+                                    <div class="reviewer-details">
+                                        <h4>stuzzy</h4>
+                                        <p>Lifetime User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 5 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    Absolutely love this script! Easy to use, incredibly effective, and the community support is amazing. My aim has improved dramatically and I'm finally competitive in PvP situations.
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">A</div>
+                                    <div class="reviewer-details">
+                                        <h4>Airoku</h4>
+                                        <p>Lifetime User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 6 -->
+                            <div class="review-card">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="review-text">
+                                    Top-tier script with unmatched performance! The developer clearly know what they're doing. Regular updates, great features, and excellent value for money. Can't imagine playing without it!
+                                </p>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">R</div>
+                                    <div class="reviewer-details">
+                                        <h4>Rhyse</h4>
+                                        <p>Lifetime User</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-nav prev" id="prevBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-nav next" id="nextBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <!-- Dots Indicator -->
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
             </div>
-        </div>
-    </section>
-    
+        </section>
     </main>
 
-    <script>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">adverse</a>
+                    <p class="footer-tagline">Unlocking peak performance with advanced gaming enhancements for competitive players worldwide.</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://discord.gg/VRx56eCbjQ" class="social-link discord" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="#" class="social-link youtube" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2024 Adverse Software. All rights reserved. | 
+                    <a href="https://discord.gg/VRx56eCbjQ">Join our community</a>
+                </p>
+            </div>
+        </div>
+    </footer>
 
-class ReviewCarousel {
+    <script>
+        // Product data structure
+        const productData = {
+            rust: {
+                name: 'Rust Scripts',
+                products: [
+                    {
+                        title: 'Rust Script | 1 Month',
+                        price: '$18',
+                        features: [
+                            'Support for all weapons and attatchments.',
+                            'Immune to all script checking tools anti-cheat software.',
+                            '1 month access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_Axpsjtd2ss2pa4PQwsLI6nfxzPnQaY3R',
+                        featured: false
+                    },
+                    {
+                        title: 'Rust Script | 3 Months',
+                        price: '$30',
+                        features: [
+                            'Support for all weapons and attatchments.',
+                            'Immune to all script checking tools anti-cheat software.',
+                            '3 month access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_QfzHmcyPnsV874rfW8jCY0n0ZLjbLLkh',
+                        featured: true
+                    },
+                    {
+                        title: 'Rust Script | Lifetime',
+                        price: '$70',
+                        features: [
+                            'Support for all weapons and attatchments.',
+                            'Immune to all script checking tools anti-cheat software.',
+                            'Lifetime access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_v9irJUmMobaUcMeIRv4gbfNjaszwxFK4',
+                        featured: false
+                    }
+                ]
+            },
+            fortnite: {
+                name: 'Rainbow X',
+                products: [
+                    {
+                        title: 'Rainbow X Script | 1 Month',
+                        price: '$12',
+                        features: [
+                            'Support for all weapons, attatchments and operators',
+                            'Immune to all script checking tools anti-cheat software.',
+                            '1 month access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_AVc3g3sykcEeQDN9Qw6pQKKk6d8AtDfi',
+                        featured: false
+                    },
+                    {
+                        title: 'Rainbow X Script | 3 Months',
+                        price: '$28',
+                        features: [
+                            'Support for all weapons, attatchments and operators',
+                            'Immune to all script checking tools anti-cheat software.',
+                            '1 month access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_kcX4nbTimHbHjnLExG9YSuHreM6mzEEg',
+                        featured: true
+                    },
+                    {
+                        title: 'Rainbow X Script | Lifetime',
+                        price: '$50',
+                        features: [
+                            'Support for all weapons, attatchments and operators',
+                            'Immune to all script checking tools anti-cheat software.',
+                            '1 month access.'
+                        ],
+                        storeId: 'STORE_7JTdXbKDJLLs2IlAxO4e5YSBO1fcD7NA',
+                        productId: 'PROD_H5ofQsXd2PCvSd6W76rzbkYWfP1lv6cF',
+                        featured: false
+                    }
+                ]
+            },
+            premium: {
+                name: 'Premium Packages',
+                products: [
+                    {
+                        title: 'Multi-Game Bundle',
+                        price: '$150',
+                        features: [
+                            'Access to ALL game scripts',
+                            'Priority support & updates',
+                            '6 months multi-game access'
+                        ],
+                        storeId: 'STORE_PREMIUM_EXAMPLE',
+                        productId: 'PROD_MULTI_BUNDLE',
+                        featured: false
+                    },
+                    {
+                        title: 'Lifetime Premium',
+                        price: '$300',
+                        features: [
+                            'Lifetime access to all products',
+                            'Exclusive VIP Discord channel',
+                            'Early access to new features',
+                            'Personal configuration support'
+                        ],
+                        storeId: 'STORE_PREMIUM_EXAMPLE',
+                        productId: 'PROD_LIFETIME_PREMIUM',
+                        featured: true
+                    },
+                    {
+                        title: 'Developer Package',
+                        price: '$500',
+                        features: [
+                            'Source code access',
+                            'Custom script development',
+                            'Direct developer contact'
+                        ],
+                        storeId: 'STORE_PREMIUM_EXAMPLE',
+                        productId: 'PROD_DEV_PACKAGE',
+                        featured: false
+                    }
+                ]
+            }
+        };
+
+        // Product Management Class
+        class ProductManager {
+            constructor() {
+                this.currentCategory = 'rust';
+                this.productsGrid = document.getElementById('productsGrid');
+                
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.renderProducts(this.currentCategory);
+            }
+
+            bindEvents() {
+                // Category tab selection
+                const categoryTabs = document.querySelectorAll('.category-tab');
+                categoryTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const category = tab.dataset.category;
+                        this.selectCategory(category);
+                    });
+                });
+            }
+
+            selectCategory(category) {
+                // Update active state in tabs
+                document.querySelectorAll('.category-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`[data-category="${category}"]`).classList.add('active');
+
+                // Update current category
+                this.currentCategory = category;
+
+                // Render new products with animation
+                this.renderProducts(category);
+            }
+
+            renderProducts(category) {
+                const products = productData[category].products;
+                
+                // Add changing class for animation
+                this.productsGrid.classList.add('changing');
+
+                setTimeout(() => {
+                    // Clear existing products
+                    this.productsGrid.innerHTML = '';
+
+                    // Create product cards
+                    products.forEach((product, index) => {
+                        const productCard = this.createProductCard(product, index);
+                        this.productsGrid.appendChild(productCard);
+                    });
+
+                    // Remove changing class to show new products
+                    setTimeout(() => {
+                        this.productsGrid.classList.remove('changing');
+                    }, 50);
+                }, 200);
+            }
+
+            createProductCard(product, index) {
+                const card = document.createElement('div');
+                card.className = `product-embed ${product.featured ? 'featured' : ''}`;
+                
+                // Create features HTML
+                const featuresHTML = product.features.map(feature => `
+                    <div class="feature-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>${feature}</span>
+                    </div>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="product-header">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price}</div>
+                    </div>
+                    <div class="product-features">
+                        ${featuresHTML}
+                    </div>
+                    <div class="embed-container">
+                        <a onclick="storrik.pay('${product.storeId}', '${product.productId}')" class="purchase-btn">
+                            Purchase Today
+                        </a>
+                    </div>
+                `;
+
+                // Add animation delay
+                card.style.animationDelay = `${index * 0.1}s`;
+
+                return card;
+            }
+        }
+
+        // Initialize Product Manager
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProductManager();
+        });
+
+        class ReviewCarousel {
             constructor() {
                 this.track = document.getElementById('carouselTrack');
                 this.prevBtn = document.getElementById('prevBtn');
@@ -1677,7 +1889,6 @@ class ReviewCarousel {
         });
 
         // Add intersection observer for animations
-        c// Add intersection observer for animations
         const reviewObserverOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
